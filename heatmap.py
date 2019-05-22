@@ -111,8 +111,8 @@ class ditui_heatmap(object):
             
         map_osm = folium.Map(location=[35,110],zoom_start=5) 
         HeatMap(self.location).add_to(map_osm)
-        for i,point in zip(range(self.num),self.location):
-            folium.Marker(point,tooltip=('Age:{}'.format(self.selected_data['i.age_val'][i])))
+        for i,point in zip(self.selected_data.index,self.location):
+            folium.Marker(point,tooltip=('Age:{}'.format(self.selected_data['i.age_val'][i]))).add_to(map_osm)
         map_osm.save(file_path) 
         print('一共有{}个用户'.format(len(self.location)))
         print('热点图已保存.')
@@ -135,16 +135,3 @@ heatmap.output_map(data,selection)
 test = heatmap.selected_data     
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    
